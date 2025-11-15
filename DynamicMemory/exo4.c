@@ -1,52 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "exo4.h"
-
-Personne *creer_personnes(int n)
-{
-    Personne *fiche_personne;
-
-    fiche_personne = malloc(n * sizeof(Personne));
-
-    if (fiche_personne == NULL)
-        exit(EXIT_FAILURE);
-
-    for (int i = 0; i < n; i++)
-    {
-        printf("----Personne %d :----\n", i + 1);
-
-        printf("Prenom : ");
-        scanf("%s", fiche_personne[i].nom);
-
-        printf("Age : ");
-        scanf("%d", &fiche_personne[i].age);
-    }
-
-    return fiche_personne;
-    
-}
 
 int main()
 {
-    int n;
-    Personne *fiche;
+    FILE *fic = fopen("prenom.txt", "w");
+    char prenom[50];
 
-    printf("Combien de personne ?\n");
-    scanf("%d", &n);
-
-    fiche = creer_personnes(n);
-
-    if (fiche == NULL)
+    if (fic == NULL)
         exit(EXIT_FAILURE);
 
-    for (int i = 0; i < n; i++)
+    printf("Entre 5 prenoms : \n");
+    for (int i = 0; i < 5; i++)
     {
-        printf("\n==========\n");
-        printf("| Personne %d |\n| %s  %d |\n", i + 1, fiche[i].nom, fiche[i].age);
+        scanf("%s", prenom);
+        fprintf(fic, "%s\n", prenom);
     }
-
-    free(fiche);
-
-    return 0;
     
+    fclose(fic);
+
+    return EXIT_SUCCESS;
 }
