@@ -44,5 +44,6 @@ int main()
     
     free(tableau_prenom);
 
-    return 0;
+    return EXIT_SUCESS;
 }
+
